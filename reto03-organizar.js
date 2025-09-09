@@ -96,10 +96,11 @@ const inventory2 = [
 ];
 
 function organizeInventory2(inventory2){
+
+  
   return inventory2.reduce((acc, {name,quantity,category})=>{
 
     if(!acc[category]) acc[category] = {};
-    // acc[category][name] = (acc[category][name] ?? 0) + quantity;
     acc[category][name] = (acc[category][name] ?? 0) + quantity;
 
     return acc
