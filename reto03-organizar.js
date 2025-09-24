@@ -23,7 +23,6 @@
 // ]
 
 // organizeInventory(inventory)
-
 // // Resultado esperado:
 // // {
 // //   toys: {
@@ -34,15 +33,12 @@
 // //     ball: 2,
 // //     racket: 4
 // //   }
-
-// const inventory2 = [
+// const inventory2 = [s
 //   { name: 'book', quantity: 10, category: 'education' },
 //   { name: 'book', quantity: 5, category: 'education' },
 //   { name: 'paint', quantity: 3, category: 'art' }
 // ]
-
 // organizeInventory(inventory2)
-
 // // Resultado esperado:
 // // {
 // //   education: {
