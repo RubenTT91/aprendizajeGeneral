@@ -36,83 +36,54 @@
 // # ]
 
 // # organizeShoes(shoes3)
-// # // []
-
-const shoes2 = [
-  { type: "I", size: 38 },
-  { type: "R", size: 38 },
-  { type: "R", size: 42 },
-  { type: "I", size: 41 },
-  { type: "I", size: 42 },
-];
-// [38, 38]
-
-function organizeShoes(shoes) {
-  let rShoe = [];
-  let combineShoe = [];
-  let pairs = [];
-
-
-  for (let shoe of shoes) {
-    shoe.type == "I"
-      ? combineShoe.push("R" + shoe.size)
-      : rShoe.push(shoe.type + shoe.size);
-  }
-  combineShoe.forEach((element) => {
-    rShoe.includes(element) ? pairs.push(Number(element.slice(-2))) : null;
-  });
-
-  return pairs;
-}
-
-
-
+// # // [
 
 const shoes3 = [
   { type: "I", size: 38 },
   { type: "R", size: 38 },
   { type: "R", size: 42 },
   { type: "I", size: 42 },
+  { type: "I", size: 42 },
+  { type: "R", size: 42 },
   { type: "I", size: 41 },
   { type: "I", size: 41 },
   { type: "R", size: 41 },
   { type: "R", size: 41 },
-
 ];
 // [38, 42,41,41]
 
-function organizeShoes2(shoes){
-  let countSize=[];
-  let pairs={};
-  let unites=0;
+function organizeShoes2(shoes) {
+  let pairs = {};
+  let pairSize= [];
 
-for(let pair of shoes){
-  const {type, size} = pair;
-  if(!pair[size]){
-    pairs[size]={"I":0,"R":0}
+  for (let shoe of shoes) {
+    const { type, size } = shoe;
+
+    if (!pairs[size]) {
+      pairs[size] = { I: 0, R: 0 };
+    }
+
+    pairs[size][type]++;
   }
 
-  pairs[size][type]++;
-  unites++;
-}
-console.log(pairs);
-let {size} = pairs;
+  Object.keys(pairs)
+  .forEach((size) => {
+    if(pairs[size].I == pairs[size].R){
+      for (let i=0; i<pairs[size].I; i++){
+        pairSize.push(Number(size));
+      } 
+    } else {
+      if(pairs[size].I>0 && pairs[size].R>0){
 
-console.log(Object.values(pairs));
-for(let unidades of Object.values(pairs)){
-  let {I, R} = unidades;
-  console.log(unidades[I], unidades[R]);
-  let totalUnidades = Math.floor((Number(unidades[I]) + Number(unidades[R]))/2);
-  console.log(totalUnidades);
+        for(let j=0; j<(Math.abs(pairs[size].I - pairs[size].R)); j++){
+          pairSize.push(size)
+        }
+      }
+    }
+    console.log(pairSize);
+  });
 
-  for(let i; i<totalUnidades;i++){
-    // countSize.push(unidades);
-  }
-  
-
-}
-return countSize;
-
+  return pairs;
 }
 
-console.log(organizeShoes2(shoes3));
+organizeShoes2(shoes3);
