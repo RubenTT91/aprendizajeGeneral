@@ -69,50 +69,35 @@ function organizeShoes(shoes) {
 
 
 const shoes3 = [
-  { type: "I", size: 38 },
-  { type: "R", size: 38 },
-  { type: "R", size: 42 },
-  { type: "I", size: 42 },
-  { type: "I", size: 41 },
-  { type: "I", size: 41 },
-  { type: "R", size: 41 },
-  { type: "R", size: 41 },
-
+  { type: 'I', size: 38 },
+  { type: 'R', size: 38 },
+  { type: 'I', size: 38 },
+  { type: 'I', size: 38 },
+  { type: 'R', size: 38 }
 ];
 // [38, 42,41,41]
 
 function organizeShoes2(shoes){
   let countSize=[];
   let pairs={};
-  let unites=0;
 
-for(let pair of shoes){
-  const {type, size} = pair;
-  if(!pair[size]){
-    pairs[size]={"I":0,"R":0}
-  }
-
+for(let shoe of shoes){
+  const {type, size} = shoe;
+  pairs[size]=pairs[size]  || {"I":0,"R":0}
   pairs[size][type]++;
-  unites++;
 }
-console.log(pairs);
-let {size} = pairs;
-
-console.log(Object.values(pairs));
-for(let unidades of Object.values(pairs)){
-  let {I, R} = unidades;
-  console.log(unidades[I], unidades[R]);
-  let totalUnidades = Math.floor((Number(unidades[I]) + Number(unidades[R]))/2);
-  console.log(totalUnidades);
-
-  for(let i; i<totalUnidades;i++){
-    // countSize.push(unidades);
+// Ahora se crea funciones para compararlos valores del pairs, acumulado.
+for(const size of Object.keys(pairs)){
+  let {I, R}=pairs[size];
+  let totalPairs = Math.min(R,I);
+  const numSize = Number(size);
+  for(let i=0; i<totalPairs;i++){
+    countSize.push(numSize);
   }
-  
-
 }
 return countSize;
-
 }
+
+
 
 console.log(organizeShoes2(shoes3));
