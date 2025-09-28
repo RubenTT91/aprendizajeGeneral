@@ -63,4 +63,33 @@ function organizeShoes(shoes) {
   return pairs;
 }
 
-console.log(organizeShoes(shoes2));
+
+
+const shoes3 = [
+  { type: "I", size: 38 },
+  { type: "R", size: 38 },
+  { type: "R", size: 42 },
+  { type: "I", size: 41 },
+  { type: "I", size: 42 },
+];
+// [38, 38]
+
+function organizeShoes2(shoes){
+  let countSize = {};
+  
+  for(let shoe of shoes){
+    const {type, size} = shoe;
+    
+    if(!countSize[size])
+      {
+        countSize[size]={"I":0, "R":0}
+        countSize[size][type]++;
+      } else {
+        countSize[size][type]++;
+        console.log(type, size);
+      }
+    }
+
+}
+
+organizeShoes2(shoes3);
