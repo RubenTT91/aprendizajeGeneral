@@ -39,25 +39,22 @@
 /** @param {string[]} box
  *  @returns {boolean} True if the gift is inside the box
  */
-let Box=[
-  "####",
-  "#* #",
-  "#  #",
-  "####"
-];
+let Box = ["#####", "#   #", "#   #", "#   #", "#####"];
 
 function inBox(box) {
-    let is=false;
-  for(let liner of box){
-      if(liner.includes("*") || liner.includes("#*#"))
-        { 
-        is=true;
-         if (!liner.includes(" #*") || !liner.includes("*# "));{
-            is =false;
-         }
+  let long = box[0].length;
+  let result = false;
+
+  for (let i=1;i<box.length-1;i++) {
+    let liner = box[i];
+    
+    if (liner.includes("*")) {
+      let index = liner.indexOf("*") + 1;
+      index > 1 && index < long ? (result = true) : (result = false);
     }
   }
-  return is;
+
+  return result;
 }
 
 console.log(inBox(Box));
